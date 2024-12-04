@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
-
 class Calcgetx extends StatefulWidget {
   const Calcgetx({super.key});
 
@@ -17,15 +16,15 @@ class CalcgetxState extends State<Calcgetx> {
       if (value == 'C') {
         question = '';
         answer = '0';
-      } else if (value == '⌫') {
+      } else if (value == '\u232B') {
         if (question.isNotEmpty) {
           question = question.substring(0, question.length - 1);
         }
       } else if (value == '=') {
         try {
           String parsedQuestion = question
-              .replaceAll('×', '*')
-              .replaceAll('÷', '/')
+              .replaceAll('\u00D7', '*')
+              .replaceAll('\u00F7', '/')
               .replaceAll('%', 'mod');
           Parser parser = Parser();
           Expression exp = parser.parse(parsedQuestion);
@@ -50,7 +49,6 @@ class CalcgetxState extends State<Calcgetx> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // Display the question
           Container(
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerRight,
@@ -59,7 +57,6 @@ class CalcgetxState extends State<Calcgetx> {
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          // Display the answer
           Container(
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerRight,
@@ -68,7 +65,6 @@ class CalcgetxState extends State<Calcgetx> {
               style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
           ),
-          // Keypad
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -105,10 +101,10 @@ class CalcgetxState extends State<Calcgetx> {
   }
 
   List<String> buttons = [
-    '7', '8', '9', '÷',
-    '4', '5', '6', '×',
+    '7', '8', '9', '\u00F7',
+    '4', '5', '6', '\u00D7',
     '1', '2', '3', '-',
     'C', '0', '00', '+',
-    '%', '⌫', '=', '/',
+    '%', '\u232B', '=', '/',
   ];
 }
