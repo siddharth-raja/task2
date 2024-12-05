@@ -15,20 +15,19 @@ class BottomNav extends StatefulWidget {
 
 class _BottomNavState extends State<BottomNav> {
   final CalculatorController controller = Get.put(CalculatorController());
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: _widgetOptions.elementAt(controller.bnindex.value),),
+      body: Obx(() => _widgetOptions[controller.bnindex.value]),
       bottomNavigationBar: createBottombar(context),
     );
   }
 
-
   final _widgetOptions = [
-    const Calcprovider(),
+    Calcprovider(),
     const Calcgetx(),
-    const Imageupload()
+    Imageupload()
   ];
 
   void _onItemTapped(int index) {
@@ -43,29 +42,29 @@ class _BottomNavState extends State<BottomNav> {
           topRight: Radius.circular(24),
           topLeft: Radius.circular(24),
         ),
-        child: BottomNavigationBar(
+        child: Obx(() => BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           backgroundColor: Themes.bottomnavbar,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 20,),
+              icon: Icon(Icons.home, size: 20),
               label: 'Provider',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.personal_video_rounded, size: 20,),
+              icon: Icon(Icons.personal_video_rounded, size: 20),
               label: 'Getx',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.image, size: 20,),
+              icon: Icon(Icons.image, size: 20),
               label: 'Upload',
             ),
           ],
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
           unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
           currentIndex: controller.bnindex.value,
-          selectedItemColor: Colors.purple,
+          selectedItemColor: Themes.purple,
           onTap: _onItemTapped,
-        ),
+        )),
       ),
     );
   }

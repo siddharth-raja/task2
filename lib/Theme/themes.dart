@@ -11,4 +11,5 @@ class Themes {
   static Color backgroundgrey = const Color.fromARGB(255, 245, 245, 245);
   static Color lightgrey = const Color.fromRGBO(115, 115, 115, 1);
   static Color bottomnavbar = const Color.fromRGBO(245, 243, 249, 1);
+  static Color purple = Colors.purple;
 }

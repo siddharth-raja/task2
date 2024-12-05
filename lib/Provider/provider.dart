@@ -1,28 +1,28 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 import '../Theme/themes.dart';
 
-class CalculatorController extends GetxController {
-  var question = ''.obs;
-  var answer = '0'.obs;
-  var bnindex = 0.obs;
-  var image = Rxn<File>();
+class CalculatorProvider with ChangeNotifier {
+  String _question = '';
+  String _answer = '0';
+  int _bnIndex = 0;
+
+  String get question => _question;
+  String get answer => _answer;
+  int get bnIndex => _bnIndex;
 
   void onButtonPressed(String value) {
     if (value == 'C') {
-      question.value = '';
-      answer.value = '0';
+      _question = '';
+      _answer = '0';
     } else if (value == '\u232B') {
-      if (question.isNotEmpty) {
-        question.value = question.substring(0, question.value.length - 1);
+      if (_question.isNotEmpty) {
+        _question = _question.substring(0, _question.length - 1);
       }
     } else if (value == '=') {
       try {
-        String parsedQuestion = question.value
+        String parsedQuestion = _question
             .replaceAll('\u00D7', '*')
             .replaceAll('\u00F7', '/')
             .replaceAll('%', 'mod');
@@ -30,13 +30,14 @@ class CalculatorController extends GetxController {
         Expression exp = parser.parse(parsedQuestion);
         ContextModel cm = ContextModel();
         double eval = exp.evaluate(EvaluationType.REAL, cm);
-        answer.value = eval.toString();
+        _answer = eval.toString();
       } catch (e) {
-        answer.value = 'Error';
+        _answer = 'Error';
       }
     } else {
-      question.value += value;
+      _question += value;
     }
+    notifyListeners();
   }
 
   Color getButtonColor(String button) {
@@ -44,7 +45,7 @@ class CalculatorController extends GetxController {
       return Themes.buttongrey;
     } else if (['+', '-', '\u00D7', '\u00F7'].contains(button)) {
       return Themes.orange;
-    } else if(['='].contains(button)) {
+    } else if (['='].contains(button)) {
       return Themes.darkblue;
     } else {
       return Themes.cream;
@@ -52,7 +53,7 @@ class CalculatorController extends GetxController {
   }
 
   Color getTextColor(String button) {
-    if (['+', '-', '\u00D7', '\u00F7', '\u00F7', '='].contains(button)) {
+    if (['+', '-', '\u00D7', '\u00F7', '='].contains(button)) {
       return Themes.white;
     } else {
       return Themes.black;
@@ -60,19 +61,15 @@ class CalculatorController extends GetxController {
   }
 
   double fontSize(String button) {
-    if (['+', '-', '\u00D7', '\u00F7', '\u00F7', '='].contains(button)) {
+    if (['+', '-', '\u00D7', '\u00F7', '='].contains(button)) {
       return 36;
     } else {
       return 28;
     }
   }
 
-  void bottomnavindex(int index) {
-    bnindex.value = index;
-  }
-
-  void imageToFile(File path) {
-    print(path);
-    image.value = path;
+  void setBottomNavIndex(int index) {
+    _bnIndex = index;
+    notifyListeners();
   }
 }

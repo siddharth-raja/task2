@@ -78,7 +78,6 @@ class _CalcgetxState extends State<Calcgetx> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
                   child: Container(
-                    height: height * 0.15,
                     width: width,
                     decoration: BoxDecoration(
                       color: Themes.backgroundgrey,
