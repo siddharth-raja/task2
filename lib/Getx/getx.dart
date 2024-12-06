@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_expressions/math_expressions.dart';
@@ -10,7 +8,6 @@ class CalculatorController extends GetxController {
   var question = ''.obs;
   var answer = '0'.obs;
   var bnindex = 0.obs;
-  var image = Rxn<File>();
 
   void onButtonPressed(String value) {
     if (value == 'C') {
@@ -69,10 +66,5 @@ class CalculatorController extends GetxController {
 
   void bottomnavindex(int index) {
     bnindex.value = index;
-  }
-
-  void imageToFile(File path) {
-    print(path);
-    image.value = path;
   }
 }

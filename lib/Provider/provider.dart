@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:math_expressions/math_expressions.dart';
 
@@ -7,7 +9,11 @@ class CalculatorProvider with ChangeNotifier {
   String _question = '';
   String _answer = '0';
   int _bnIndex = 0;
+  File? _image;
 
+
+
+  File? get image => _image;
   String get question => _question;
   String get answer => _answer;
   int get bnIndex => _bnIndex;
@@ -70,6 +76,16 @@ class CalculatorProvider with ChangeNotifier {
 
   void setBottomNavIndex(int index) {
     _bnIndex = index;
+    notifyListeners();
+  }
+
+  void setImage(File image) {
+    _image = image;
+    notifyListeners();
+  }
+
+  void removeImage() {
+    _image = null;
     notifyListeners();
   }
 }

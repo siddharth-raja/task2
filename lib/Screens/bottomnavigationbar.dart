@@ -18,16 +18,18 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Obx(() => _widgetOptions[controller.bnindex.value]),
-      bottomNavigationBar: createBottombar(context),
+    return SafeArea(
+      child: Scaffold(
+        body: Obx(() => _widgetOptions[controller.bnindex.value]),
+        bottomNavigationBar: createBottombar(context),
+      ),
     );
   }
 
   final _widgetOptions = [
     Calcprovider(),
     const Calcgetx(),
-    Imageupload()
+    const Imageupload()
   ];
 
   void _onItemTapped(int index) {

@@ -33,7 +33,7 @@ class _CalcgetxState extends State<Calcgetx> {
             ),
           ),
           Container(
-            height: height * 0.8,
+            height: height * 0.75,
             width: width,
             decoration: BoxDecoration(
               color: Themes.white,
