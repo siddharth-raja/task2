@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task2/Getx/getx.dart';
+import 'package:calculator/Getx/getx.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../Theme/themes.dart';

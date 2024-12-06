@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:task2/Getx/getx.dart';
-import 'package:task2/Screens/calcgetx.dart';
-import 'package:task2/Screens/calcprovider.dart';
-import 'package:task2/Screens/imageupload.dart';
-import 'package:task2/Theme/themes.dart';
+import 'package:calculator/Getx/getx.dart';
+import 'package:calculator/Screens/calcgetx.dart';
+import 'package:calculator/Screens/calcprovider.dart';
+import 'package:calculator/Screens/imageupload.dart';
+import 'package:calculator/Theme/themes.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});

@@ -1,4 +1,4 @@
-package com.example.task2
+package com.example.calculator
 
 import io.flutter.embedding.android.FlutterActivity
 

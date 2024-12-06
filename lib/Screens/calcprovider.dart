@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:task2/Provider/provider.dart';
+import 'package:calculator/Provider/provider.dart';
 import '../Theme/themes.dart';
 
 class Calcprovider extends StatelessWidget {
