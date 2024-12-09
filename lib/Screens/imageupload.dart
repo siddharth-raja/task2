@@ -31,6 +31,7 @@ class Imageupload extends StatelessWidget {
 
     Future<bool> checkPermission(Permission permission, BuildContext context) async {
       final status = await permission.request();
+      print(permission);
       if (status.isGranted || status.isLimited) {
         return true;
       } else {
@@ -146,7 +147,7 @@ class Imageupload extends StatelessWidget {
                                           behavior: HitTestBehavior.opaque,
                                           onTap: () async {
                                             Navigator.pop(context);
-                                            bool isAllowed = await checkPermission(Permission.photos, context);
+                                            bool isAllowed = await checkPermission(Permission.camera, context);
                                             if (isAllowed) {
                                               final image = await ImagePicker().pickImage(source: ImageSource.gallery);
                                               if (image != null) {
@@ -285,7 +286,7 @@ class Imageupload extends StatelessWidget {
                                             behavior: HitTestBehavior.opaque,
                                             onTap: () async {
                                               Navigator.pop(context);
-                                              bool isAllowed = await checkPermission(Permission.photos, context);
+                                              bool isAllowed = await checkPermission(Permission.camera, context);
                                               if (isAllowed) {
                                                 final image = await ImagePicker().pickImage(source: ImageSource.gallery);
                                                 if (image != null) {

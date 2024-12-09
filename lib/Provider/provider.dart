@@ -36,7 +36,11 @@ class CalculatorProvider with ChangeNotifier {
         Expression exp = parser.parse(parsedQuestion);
         ContextModel cm = ContextModel();
         double eval = exp.evaluate(EvaluationType.REAL, cm);
-        _answer = eval.toStringAsFixed(2);
+        if (eval % 1 == 0) {
+          _answer = eval.toInt().toString();
+        } else {
+          _answer = eval.toStringAsFixed(2);
+        }
       } catch (e) {
         _answer = 'Error';
       }

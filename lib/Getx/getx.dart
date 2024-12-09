@@ -27,7 +27,11 @@ class CalculatorController extends GetxController {
         Expression exp = parser.parse(parsedQuestion);
         ContextModel cm = ContextModel();
         double eval = exp.evaluate(EvaluationType.REAL, cm);
-        answer.value = eval.toStringAsFixed(2);
+        if (eval % 1 == 0) {
+          answer.value = eval.toInt().toString();
+        } else {
+          answer.value = eval.toStringAsFixed(2);
+        }
       } catch (e) {
         answer.value = 'Error';
       }
