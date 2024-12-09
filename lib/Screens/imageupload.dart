@@ -15,7 +15,18 @@ class Imageupload extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void scaffoldmessage() {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Please grant permission')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        dismissDirection: DismissDirection.endToStart,
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Error', style: TextStyle(color: Themes.red, fontSize: 13, fontWeight: FontWeight.w500),),
+            Text('Please grant permission', style: TextStyle(color: Themes.black, fontSize: 13, fontWeight: FontWeight.w400),),
+          ],
+        ), 
+        behavior: SnackBarBehavior.floating, 
+        backgroundColor: Themes.white,
+      ));
     }
 
     Future<bool> checkPermission(Permission permission, BuildContext context) async {
@@ -135,7 +146,7 @@ class Imageupload extends StatelessWidget {
                                           behavior: HitTestBehavior.opaque,
                                           onTap: () async {
                                             Navigator.pop(context);
-                                            bool isAllowed = await checkPermission(Permission.camera, context);
+                                            bool isAllowed = await checkPermission(Permission.photos, context);
                                             if (isAllowed) {
                                               final image = await ImagePicker().pickImage(source: ImageSource.gallery);
                                               if (image != null) {
@@ -274,7 +285,7 @@ class Imageupload extends StatelessWidget {
                                             behavior: HitTestBehavior.opaque,
                                             onTap: () async {
                                               Navigator.pop(context);
-                                              bool isAllowed = await checkPermission(Permission.camera, context);
+                                              bool isAllowed = await checkPermission(Permission.photos, context);
                                               if (isAllowed) {
                                                 final image = await ImagePicker().pickImage(source: ImageSource.gallery);
                                                 if (image != null) {
